@@ -2,26 +2,42 @@
 
 
 #include "Actor/GizmoBase.h"
+#include "Components/StaticMeshComponent.h"
 
-// Sets default values
 AGizmoBase::AGizmoBase()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	SceneComponent = CreateDefaultSubobject<USceneComponent>(FName("Root"));
+	SceneComponent->SetupAttachment(RootComponent);
 
+	XAxis = CreateDefaultSubobject<UStaticMeshComponent>(FName("XAxis"));
+	XAxis->SetupAttachment(SceneComponent);
+
+	YAxis = CreateDefaultSubobject<UStaticMeshComponent>(FName("YAxis"));
+	YAxis->SetupAttachment(SceneComponent);
+
+	ZAxis = CreateDefaultSubobject<UStaticMeshComponent>(FName("ZAxis"));
+	ZAxis->SetupAttachment(SceneComponent);
+
+	XYAxis = CreateDefaultSubobject<UStaticMeshComponent>(FName("XYAxis"));
+	XYAxis->SetupAttachment(SceneComponent);
+
+	YZAxis = CreateDefaultSubobject<UStaticMeshComponent>(FName("YZAxis"));
+	YZAxis->SetupAttachment(SceneComponent);
+
+	XZAxis = CreateDefaultSubobject<UStaticMeshComponent>(FName("XZAxis"));
+	XZAxis->SetupAttachment(SceneComponent);
+
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("StaticMesh"));
 }
 
-// Called when the game starts or when spawned
-void AGizmoBase::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
 void AGizmoBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
 
+void AGizmoBase::BeginPlay()
+{
+	Super::BeginPlay();
 }
 
