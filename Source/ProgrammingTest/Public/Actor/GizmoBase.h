@@ -43,9 +43,18 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Gizmo")
 	TObjectPtr<UStaticMeshComponent> XZAxis;
+	
+    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Gizmo")
+    TObjectPtr<UStaticMeshComponent> RotationXAxis;
+
+    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Gizmo")
+    TObjectPtr<UStaticMeshComponent> RotationYAxis;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Gizmo")
-	TObjectPtr<UStaticMeshComponent> Mesh;
+    TObjectPtr<UStaticMeshComponent> RotationZAxis;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Gizmo")
+	TObjectPtr<UStaticMeshComponent> MoveAll;
 
 protected:
 	// Called when the game starts or when spawned

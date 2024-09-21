@@ -27,8 +27,18 @@ AGizmoBase::AGizmoBase()
 
 	XZAxis = CreateDefaultSubobject<UStaticMeshComponent>(FName("XZAxis"));
 	XZAxis->SetupAttachment(SceneComponent);
+	
+    RotationXAxis = CreateDefaultSubobject<UStaticMeshComponent>(FName("RotationXAxis"));
+    RotationXAxis->SetupAttachment(SceneComponent);
 
-	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("StaticMesh"));
+    RotationYAxis = CreateDefaultSubobject<UStaticMeshComponent>(FName("RotationYAxis"));
+    RotationYAxis->SetupAttachment(SceneComponent);
+
+	RotationZAxis = CreateDefaultSubobject<UStaticMeshComponent>(FName("RotationZAxis"));
+    RotationZAxis->SetupAttachment(SceneComponent);
+
+	MoveAll = CreateDefaultSubobject<UStaticMeshComponent>(FName("StaticMesh"));
+	MoveAll->SetupAttachment(SceneComponent);
 }
 
 void AGizmoBase::Tick(float DeltaTime)
@@ -39,5 +49,8 @@ void AGizmoBase::Tick(float DeltaTime)
 void AGizmoBase::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	SceneComponent->SetVisibility(false, true);
+	
 }
 
