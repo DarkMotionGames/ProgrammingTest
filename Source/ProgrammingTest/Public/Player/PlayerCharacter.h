@@ -7,6 +7,7 @@
 struct FInputActionValue;
 class UCameraComponent;
 class UInputAction;
+class AGizmoBase;
 
 UCLASS()
 class PROGRAMMINGTEST_API APlayerCharacter : public ACharacter
@@ -28,33 +29,39 @@ class PROGRAMMINGTEST_API APlayerCharacter : public ACharacter
 	/** Move Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* MoveAction;
+
+	/** Move Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* GizmoAction;
 	
 public:
 	APlayerCharacter();
 
-protected:
-	virtual void BeginPlay() override;
-
-public:
-		
 	/** Look Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
-
 protected:
+	virtual void BeginPlay() override;
+	
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
 
-protected:
+	/** Called for looking input */
+	void EnableGizmo(const FInputActionValue& Value);
+
 	// APawn interface
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 	// End of APawn interface
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Gizmo)
+    TSubclassOf<AGizmoBase> GizmoActor;
+
+	
 public:
-	/** Returns Mesh1P subobject **/
+	/** Returns Mesh1P subObject **/
 	USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
